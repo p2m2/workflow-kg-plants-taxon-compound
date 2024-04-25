@@ -13,6 +13,10 @@ python api_doi.py --list_doi_file list_doi_example.txt --output test.jso
 
 ## Maxime tools
 
+```bash
+python workflow_idap.py --dump igepp.json
+```
+
 [colab](https://colab.research.google.com/github/idiap/abroad-re/blob/main/notebooks/inference.ipynb#scrollTo=6yPr04vYVoVE)
 
 

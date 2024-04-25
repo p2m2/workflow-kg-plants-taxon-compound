@@ -13,7 +13,7 @@ model = PeftModel.from_pretrained(model, lora_adapters)
 model = model.merge_and_unload()
 tokenizer = AutoTokenizer.from_pretrained(model_hf)
 
-def inference(text):
+def inference(text,dict_triplet_output):
     device = torch.device("cuda")
 
     # Decoding arguments
@@ -41,8 +41,17 @@ def inference(text):
     output = tokenizer.decode(beam_output[0][len(input_tokens["input_ids"][0]):], skip_special_tokens=True)
 
     # Parse and print
-    rels = output.strip().split("; ")
+    rels = output.strip().split(";")
     for rel in rels:
-        print("- " + rel)
+        data = rel.split("produces")
+        if len(data)<2:
+            print(f"can not manage : {data}")
+            continue
+        taxon = data[0].strip()
+        metabolite = data[1].strip()
+        dict_triplet_output.setdefault(taxon,[])
+        if metabolite not in dict_triplet_output[taxon]:
+            dict_triplet_output[taxon].append(metabolite)
+        
     torch.cuda.empty_cache()
     gc.collect()
