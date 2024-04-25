@@ -19,7 +19,7 @@ if __name__ == "__main__":
     if os.path.exists(args.dump):
         # Charger les données JSON depuis le fichier
         with open(args.dump, 'r') as fichier:
-            doi_database = json.load(fichier)
+            article_database = json.load(fichier)
     
     for article in article_database:
         print(article)
