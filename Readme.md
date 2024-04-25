@@ -26,6 +26,7 @@ python api_doi.py --list_doi_file list_doi_example.txt --output test.jso
 srun --gpus 1 -p gpu --pty bash
 . /local/env/envpython-3.9.5.sh
 virtualenv ~/env-idiap
+source ~/env-idiap/bin/activate
 export PATH=/home/genouest/inra_umr1349/ofilangi/.local/bin:$PATH
 ```
 
