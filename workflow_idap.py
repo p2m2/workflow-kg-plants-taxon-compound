@@ -34,17 +34,21 @@ if __name__ == "__main__":
     relations_taxon_metabolite = {}
    
     for pmid in article_database:
-        print(f"PMID {pmid} - {article_database[pmid]['title']}")
-        print("-------------------------------------------------")
-        text = article_database[pmid]['title']+"."
-        text += article_database[pmid]['abstract']
-        traitement_inference_n_mots(text,relations_taxon_metabolite)
-        
-        text = article_database[pmid]['intro']
-        traitement_inference_n_mots(text,relations_taxon_metabolite)
 
-        text = article_database[pmid]['results']
-        traitement_inference_n_mots(text,relations_taxon_metabolite)
+        if ('title' in article_database[pmid] and 
+            'abstract' in article_database[pmid] ) :
+            print(f"PMID {pmid} - {article_database[pmid]['title']}")
+            print("-------------------------------------------------")
+            text = article_database[pmid]['title']+"."
+            text += article_database[pmid]['abstract']
+            traitement_inference_n_mots(text,relations_taxon_metabolite)
+        
+        if 'intro' in article_database[pmid]:
+            text = article_database[pmid]['intro']
+            traitement_inference_n_mots(text,relations_taxon_metabolite)
+
+        #text = article_database[pmid]['results']
+        #traitement_inference_n_mots(text,relations_taxon_metabolite)
     
     outputfile=args.dump.split(".")[0]+"_asso_taxon_metabolite_idiap.json"
     if os.path.exists(outputfile):
