@@ -5,12 +5,12 @@ This workflow involves a chain of processes to construct a knowledge graph from 
 ## 1 - a) Building the article base from a list of DOIs
 
 ```
-python api_doi.py --list_doi "10.1021/jf401802n,10.1021/jf405538d" --output test.jso
+python api_doi.py --list_doi "10.1021/jf401802n,10.1021/jf405538d" --output test.json
 ```
 ## 1 - b) Building the article base from a list of DOIs in a file
 
 ```
-python api_doi.py --list_doi_file list_doi_example.txt --output test.jso
+python api_doi.py --list_doi_file list_doi_example.txt --output test.json
 ```
 
 ## 2 - IDIAP Workflow to generate Taxon / Metabolite "produces" associations
@@ -33,8 +33,9 @@ python workflow_idap.py --dump igepp.json
 ```
 
 ### References
-- 
-[colab](https://colab.research.google.com/github/idiap/abroad-re/blob/main/notebooks/inference.ipynb#scrollTo=6yPr04vYVoVE)
+
+- [Relation Extraction in underexplored biomedical domains: A diversity-optimised sampling and synthetic data generation approach](https://github.com/idiap/abroad-re)
+- [colab](https://colab.research.google.com/github/idiap/abroad-re/blob/main/notebooks/inference.ipynb#scrollTo=6yPr04vYVoVE)
 
 ## 3 - GBIF association with taxon
 

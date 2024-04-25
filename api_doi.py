@@ -24,13 +24,13 @@ def search_pmid_from_doi(doi):
     else:
         print("Erreur lors de la requête à PubMed Central.")
     
-    return pmid
+    return doi,pmid
 
-def get_title_abstract_text(doi_database,list_pmid):
+def get_title_abstract_text(doi_database,list_doi_pmid):
     print("get_title_abstract_text")
     list_article = doi_database
-    for pmid in list_pmid:
-        print(pmid)
+    for doi,pmid in list_doi_pmid:
+        print(doi,pmid)
         if pmid in doi_database:
             continue
         print("--request --")
@@ -38,7 +38,7 @@ def get_title_abstract_text(doi_database,list_pmid):
         params = {}
         response = requests.get(base_url, params=params)
         
-        list_article[pmid] = {}
+        list_article[pmid] = {'doi' : doi}
         if response.status_code == 200:
             data = response.json()
             documents = data[0]['documents'] #
@@ -92,14 +92,12 @@ if __name__ == "__main__":
             doi_database = json.load(fichier)
 
     list_pmid = list(map(search_pmid_from_doi, ldoi))   
-    filtre_bool = lambda x: x != 'N/A'
+    filtre_bool = lambda pmid: pmid != 'N/A'
 
-    list_clean_pmid = [x for x in list_pmid if filtre_bool(x)]
-    print(f"clean list:{list_clean_pmid}")
-    resultats_articles = get_title_abstract_text(doi_database,list_clean_pmid)
+    list_clean_doi_pmid = [ (doi,pmid) for doi,pmid in list_pmid if filtre_bool(pmid)]
+    print(f"clean list:{list_clean_doi_pmid}")
+    resultats_articles = get_title_abstract_text(doi_database,list_clean_doi_pmid)
   
-   
-
     # Écrire les données JSON dans un fichier
     with open(chemin_fichier, 'w') as fichier:
         json.dump(resultats_articles, fichier)
