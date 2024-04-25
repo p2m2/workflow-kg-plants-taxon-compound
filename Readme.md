@@ -1,8 +1,14 @@
 # workflow-kg-plants-taxon-compound
-## Construction de la base d'article 
+
+## Construction de la base d'article à partir d'une liste de DOI
 
 ```
 python api_doi.py --list_doi "10.1021/jf401802n,10.1021/jf405538d" --output test.jso
+```
+## Construction de la base d'article à partir d'une liste de DOI dans un fichier
+
+```
+python api_doi.py --list_doi_file list_doi_example.txt --output test.jso
 ```
 
 ## Maxime tools

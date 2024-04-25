@@ -5,38 +5,40 @@ import os
 
 #curl -d 'ids=10.1021/jf401802n,10.1021/jf405538d' 'https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/?idtype=doi&format=json
 
-def search_pmid_from_doi(doi_list):
+def search_pmid_from_doi(doi):
     base_url = "https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/?idtype=doi"
     params = {
-        "ids": doi_list,
+        "ids": doi,
         "idtype": "doi",  
         "format": "json"
     }
-    pmid_list = []
+    pmid = ""
     response = requests.get(base_url, params=params)
 
     if response.status_code == 200:
         data = response.json()
         articles = data.get('records', [])
+        
         for article in articles:
             pmid = article.get('pmid', 'N/A')
-            pmid_list.append(pmid)
     else:
         print("Erreur lors de la requête à PubMed Central.")
     
-    return pmid_list
+    return pmid
 
 def get_title_abstract_text(doi_database,list_pmid):
-
+    print("get_title_abstract_text")
     list_article = doi_database
-
     for pmid in list_pmid:
+        print(pmid)
+        if pmid in doi_database:
+            continue
+        print("--request --")
         base_url = f"https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/{pmid}/ascii"
         params = {}
         response = requests.get(base_url, params=params)
         
         list_article[pmid] = {}
-
         if response.status_code == 200:
             data = response.json()
             documents = data[0]['documents'] #
@@ -59,12 +61,26 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='')
 
     # Ajouter des arguments
-    parser.add_argument('--list_doi', type=str, help='list des doi')
-    parser.add_argument('--output', type=str, help='json output results file')
+    parser.add_argument('--list_doi', type=str, help='list of DOIs separated by commas.')
+    parser.add_argument('--list_doi_file', type=str, help='File containing a list of DOIs. Each DOI is on a separate line.')
+    parser.add_argument('--output', type=str, help='JSON output results file')
 
     args = parser.parse_args()
+    ldoi = []
+    if args.list_doi != None :
+        ldoi = args.list_doi.split(",")
+    else:
+         # Vérifier si le fichier existe
+        if os.path.exists(args.list_doi_file):
+            # Charger les données JSON depuis le fichier
+            with open(args.list_doi_file, 'r') as fichier:
+                for ligne in fichier:
+                    # Ajouter la ligne (enregistrement) au tableau
+                    ldoi.append(ligne.strip())
     
-     # Chemin vers le fichier de sortie JSON
+    print(f"Number of DOIs:{len(ldoi)}")
+    print(ldoi)
+    # Chemin vers le fichier de sortie JSON
     chemin_fichier = args.output
     
     doi_database = {}
@@ -75,12 +91,11 @@ if __name__ == "__main__":
         with open(chemin_fichier, 'r') as fichier:
             doi_database = json.load(fichier)
 
-    list_pmid = search_pmid_from_doi(args.list_doi.split(","))
-    
-    filtre_bool = lambda x: x != "N/A"
+    list_pmid = list(map(search_pmid_from_doi, ldoi))   
+    filtre_bool = lambda x: x != 'N/A'
 
     list_clean_pmid = [x for x in list_pmid if filtre_bool(x)]
-    
+    print(f"clean list:{list_clean_pmid}")
     resultats_articles = get_title_abstract_text(doi_database,list_clean_pmid)
   
    
