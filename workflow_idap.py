@@ -4,14 +4,14 @@ import argparse
 import os
 import json 
 
-def traitement_inference_n_mots(texte,dict_results,n=350):
+def traitement_inference_n_mots(doi,texte,dict_results,n=350):
     mots = texte.split()
     
     taille_tranche = n
     
     for i in range(0, len(mots), taille_tranche):
         tranche_mots = mots[i:i+taille_tranche]
-        inference(' '.join(tranche_mots),dict_results)  
+        inference(doi,' '.join(tranche_mots),dict_results)  
 
 
 if __name__ == "__main__":
@@ -34,18 +34,20 @@ if __name__ == "__main__":
     relations_taxon_metabolite = {}
    
     for pmid in article_database:
-
+        if 'doi' not in article_database[pmid]:
+            continue
+        doi = article_database[pmid]['doi']
         if ('title' in article_database[pmid] and 
             'abstract' in article_database[pmid] ) :
             print(f"PMID {pmid} - {article_database[pmid]['title']}")
             print("-------------------------------------------------")
             text = article_database[pmid]['title']+"."
             text += article_database[pmid]['abstract']
-            traitement_inference_n_mots(text,relations_taxon_metabolite)
+            traitement_inference_n_mots(doi,text,relations_taxon_metabolite)
         
         if 'intro' in article_database[pmid]:
             text = article_database[pmid]['intro']
-            traitement_inference_n_mots(text,relations_taxon_metabolite)
+            traitement_inference_n_mots(doi,text,relations_taxon_metabolite)
 
         #text = article_database[pmid]['results']
         #traitement_inference_n_mots(text,relations_taxon_metabolite)

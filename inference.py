@@ -2,6 +2,7 @@ import gc
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
+from fusion_dict import * 
 
 # model and adapters path
 model_hf = "microsoft/BioGPT-Large"
@@ -13,7 +14,7 @@ model = PeftModel.from_pretrained(model, lora_adapters)
 model = model.merge_and_unload()
 tokenizer = AutoTokenizer.from_pretrained(model_hf)
 
-def inference(text,dict_triplet_output):
+def inference(doi,text,dict_triplet_doi_output):
     device = torch.device("cuda")
 
     # Decoding arguments
@@ -39,7 +40,9 @@ def inference(text,dict_triplet_output):
         beam_output = model.generate(**input_tokens, **EVAL_GENERATION_ARGS)
     
     output = tokenizer.decode(beam_output[0][len(input_tokens["input_ids"][0]):], skip_special_tokens=True)
-
+    
+    dict_triplet_doi_output.setdefault(doi,[])
+    dict_triplet_output = {}
     # Parse and print
     rels = output.strip().split(";")
     for rel in rels:
@@ -52,6 +55,8 @@ def inference(text,dict_triplet_output):
         dict_triplet_output.setdefault(taxon,[])
         if metabolite not in dict_triplet_output[taxon]:
             dict_triplet_output[taxon].append(metabolite)
-        
+    
+    dict_triplet_doi_output[doi] = fusionner_dictionnaires(dict_triplet_doi_output[doi],dict_triplet_output)
+    
     torch.cuda.empty_cache()
     gc.collect()
