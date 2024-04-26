@@ -1,6 +1,6 @@
 from pygbif import registry,species
 from ontology_mapping import init_ontology_mapping
-from rdflib import Graph, Literal, RDF, URIRef
+from rdflib import Graph, Literal, RDF, URIRef, BNode
 from rdflib.namespace import SKOS, RDFS, DCTERMS
 
 import argparse
@@ -118,10 +118,14 @@ if __name__ == "__main__":
                 if 'canonicalName' in backbone:
                     g.add((taxon, URIRef(propertyDict['hasCanicalName']), Literal(backbone['canonicalName'])))
                 
+                n = BNode()
                 ## Skos:related with compound
-                for compound in doi_taxon_compound_database[doiKey][taxonKey]:
-                    g.add((taxon, SKOS.related, Literal(compound.strip())))
-                
+                for compound in doi_taxon_compound_database[doiKey][taxonKey]:    
+                    g.add((n, SKOS.related, taxon))
+                    g.add((n, SKOS.related, Literal(compound.strip())))
+
+                g.add((taxon, URIRef("http://purl.org/spar/cito/hasCitingEntity"), n))
+
             
 
     print("--- printing ---")
