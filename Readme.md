@@ -12,8 +12,12 @@ python src/api_doi.py --list_doi "10.1021/jf401802n,10.1021/jf405538d" --output 
 ## 1 - b) Building the article base from a list of DOIs in a file
 
 ```
-python src/api_doi.py --list_doi_file list_doi_example.txt --output test.json
+python src/api_doi.py --list_doi_file data/list_doi_example.txt --output test.json
 ```
+
+## 1 - c) Building tha article base from pdf article
+
+*TODO*
 
 ## 2 - IDIAP Workflow to generate Taxon / Metabolite "produces" associations
 
