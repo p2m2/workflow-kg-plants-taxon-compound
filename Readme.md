@@ -45,9 +45,7 @@ python src/workflow_idap.py --dump igepp.json
 - [Relation Extraction in underexplored biomedical domains: A diversity-optimised sampling and synthetic data generation approach](https://github.com/idiap/abroad-re)
 - [colab](https://colab.research.google.com/github/idiap/abroad-re/blob/main/notebooks/inference.ipynb#scrollTo=6yPr04vYVoVE)
 
-## 3 - Build RF Graph
-
-- GBIF association with taxon
+## 3 - Build RDF Graph
 
 ```bash
 pip install pygbif rdflib
