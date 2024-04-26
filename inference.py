@@ -56,7 +56,7 @@ def inference(doi,text,dict_triplet_doi_output):
         if metabolite not in dict_triplet_output[taxon]:
             dict_triplet_output[taxon].append(metabolite)
     
-    dict_triplet_doi_output[doi] = fusionner_dictionnaires(dict_triplet_doi_output[doi],dict_triplet_output)
+    dict_triplet_doi_output[doi] = merge_dictionaries(dict_triplet_doi_output[doi],dict_triplet_output)
     
     torch.cuda.empty_cache()
     gc.collect()

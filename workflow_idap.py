@@ -1,64 +1,62 @@
-from inference import * 
+from inference import *
 
 import argparse
 import os
-import json 
+import json
 
-def traitement_inference_n_mots(doi,texte,dict_results,n=350):
-    mots = texte.split()
+def process_inference_n_words(doi, text, dict_results, n=350):
+    words = text.split()
     
-    taille_tranche = n
+    chunk_size = n
     
-    for i in range(0, len(mots), taille_tranche):
-        tranche_mots = mots[i:i+taille_tranche]
-        inference(doi,' '.join(tranche_mots),dict_results)  
-
+    for i in range(0, len(words), chunk_size):
+        word_chunk = words[i:i+chunk_size]
+        inference(doi, ' '.join(word_chunk), dict_results)
 
 if __name__ == "__main__":
-    # Créer un analyseur d'arguments
+    # Create an argument parser
     parser = argparse.ArgumentParser(description='')
 
-    # Ajouter des arguments
-    parser.add_argument('--dump', type=str, help='JSON dum')
+    # Add arguments
+    parser.add_argument('--dump', type=str, help='JSON dump')
     
     args = parser.parse_args()
 
     article_database = {}
 
-    # Vérifier si le fichier existe
+    # Check if the file exists
     if os.path.exists(args.dump):
-        # Charger les données JSON depuis le fichier
-        with open(args.dump, 'r') as fichier:
-            article_database = json.load(fichier)
+        # Load JSON data from the file
+        with open(args.dump, 'r') as file:
+            article_database = json.load(file)
     
-    relations_taxon_metabolite = {}
+    taxon_metabolite_relations = {}
    
     for pmid in article_database:
         if 'doi' not in article_database[pmid]:
             continue
         doi = article_database[pmid]['doi']
         if ('title' in article_database[pmid] and 
-            'abstract' in article_database[pmid] ) :
+            'abstract' in article_database[pmid]):
             print(f"PMID {pmid} - {article_database[pmid]['title']}")
             print("-------------------------------------------------")
-            text = article_database[pmid]['title']+"."
+            text = article_database[pmid]['title'] + "."
             text += article_database[pmid]['abstract']
-            traitement_inference_n_mots(doi,text,relations_taxon_metabolite)
+            process_inference_n_words(doi, text, taxon_metabolite_relations)
         
         if 'intro' in article_database[pmid]:
             text = article_database[pmid]['intro']
-            traitement_inference_n_mots(doi,text,relations_taxon_metabolite)
+            process_inference_n_words(doi, text, taxon_metabolite_relations)
 
         #text = article_database[pmid]['results']
-        #traitement_inference_n_mots(text,relations_taxon_metabolite)
+        #process_inference_n_words(text, taxon_metabolite_relations)
     
-    outputfile=args.dump.split(".")[0]+"_asso_taxon_metabolite_idiap.json"
+    outputfile = args.dump.split(".")[0] + "_taxon_metabolite_associations_idiap.json"
     if os.path.exists(outputfile):
         os.remove(outputfile)
-    # Écrire les données JSON dans un fichier
-    with open(outputfile, 'w') as fichier:
-        json.dump(relations_taxon_metabolite, fichier)
+    # Write JSON data to a file
+    with open(outputfile, 'w') as file:
+        json.dump(taxon_metabolite_relations, file)
 
-    print(f"size results:{str(len(relations_taxon_metabolite))}")
-    print("Le résultat a été écrit dans le fichier :", outputfile)
-
+    print(f"Results size: {str(len(taxon_metabolite_relations))}")
+    print("The result has been written to the file:", outputfile)
