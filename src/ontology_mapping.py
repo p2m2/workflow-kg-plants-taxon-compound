@@ -5,7 +5,7 @@ import configparser
 script_dir = os.path.dirname(os.path.abspath(__file__))
 project_dir = os.path.dirname(script_dir)
 
-ontology_mapping_config_file = '../config/ontology_mapping.ini'
+ontology_mapping_config_file = 'config/ontology_mapping.ini'
 absolute_path = os.path.join(project_dir, ontology_mapping_config_file)
 
 def assertIsNotNone(dict,value,errorMessage):
