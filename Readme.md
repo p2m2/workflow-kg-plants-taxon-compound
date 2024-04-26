@@ -2,15 +2,17 @@
 
 This workflow involves a chain of processes to construct a knowledge graph from a list of scientific article DOIs. It aims to establish connections between scientific articles contained in PubMed and pairs of taxa/metabolites through the "produces" relationship. This work is based on the repository [Relation Extraction in underexplored biomedical domains: A diversity-optimised sampling and synthetic data generation approach](https://github.com/idiap/abroad-re).
 
+
+
 ## 1 - a) Building the article base from a list of DOIs
 
 ```
-python api_doi.py --list_doi "10.1021/jf401802n,10.1021/jf405538d" --output test.json
+python src/api_doi.py --list_doi "10.1021/jf401802n,10.1021/jf405538d" --output test.json
 ```
 ## 1 - b) Building the article base from a list of DOIs in a file
 
 ```
-python api_doi.py --list_doi_file list_doi_example.txt --output test.json
+python src/api_doi.py --list_doi_file list_doi_example.txt --output test.json
 ```
 
 ## 2 - IDIAP Workflow to generate Taxon / Metabolite "produces" associations
@@ -37,6 +39,11 @@ python workflow_idap.py --dump igepp.json
 - [Relation Extraction in underexplored biomedical domains: A diversity-optimised sampling and synthetic data generation approach](https://github.com/idiap/abroad-re)
 - [colab](https://colab.research.google.com/github/idiap/abroad-re/blob/main/notebooks/inference.ipynb#scrollTo=6yPr04vYVoVE)
 
-## 3 - GBIF association with taxon
+## 3 - Build RF Graph
 
-## 4 - Metabolite association with 
+- GBIF association with taxon
+
+```bash
+pip install pygbif rdflib
+python build_rdf_graph.py --dump_doi test.json --dump_taxon_compound test_asso_taxon_metabolite_idiap.json
+```
