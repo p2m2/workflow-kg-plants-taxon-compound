@@ -1,0 +1,150 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <http://purl.obolibrary.org/obo/> .
+@prefix ns2: <http://ontology.irstea.fr/agronomictaxon/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://doi.org/10.1021/jf401802n> a <http://purl.org/spar/fabio/JournalArticle> ;
+    dcterms:abstract "Brassica vegetables are known to contain relatively high concentrations of bioactive compounds associated with human health. A comprehensive profiling of polyphenols from five Brassica species microgreens was conducted using ultra high-performance liquid chromatography photo diode array high-resolution multi-stage mass spectrometry (UHPLC-PDA-ESI/HRMSn). A total of 164 polyphenols including 30 anthocyanins, 105 flavonol glycosides, and 29 hydroxycinnamic acid and hydroxybenzoic acid derivatives were putatively identified.The putative identifications were based on UHPLC-HRMSn analysis using retention times, elution orders, UV/Vis spectra and high resolution mass spectra, in-house polyphenol database, and as well as literature comparisons. This study showed that these five Brassica species microgreens could be considered as good sources of food polyphenols." ;
+    dcterms:references <https://www.gbif.org/species/3042658>,
+        <https://www.gbif.org/species/3042751>,
+        <https://www.gbif.org/species/3042845>,
+        <https://www.gbif.org/species/3042846>,
+        <https://www.gbif.org/species/3042850>,
+        <https://www.gbif.org/species/4272771>,
+        <https://www.gbif.org/species/6393123>,
+        <https://www.gbif.org/species/7903057> ;
+    dcterms:title "Profiling Polyphenols in Five Brassica species Microgreens by UHPLC-PDA-ESI/HRMSn" ;
+    dcterms:type <http://purl.org/spar/fabio/JournalArticle> .
+
+<https://www.gbif.org/species/3042846> a <http://schema.org/Taxon> ;
+    ns2:hasCanicalName "Brassica oleracea capitata" ;
+    ns2:hasRank "VARIETY" ;
+    ns2:hasScientificName "Brassica oleracea var. capitata L." ;
+    ns1:NCBITaxon_class <https://www.gbif.org/species/220> ;
+    ns1:NCBITaxon_family <https://www.gbif.org/species/3112> ;
+    ns1:NCBITaxon_genus <https://www.gbif.org/species/3042506> ;
+    ns1:NCBITaxon_kingdom <https://www.gbif.org/species/6> ;
+    ns1:NCBITaxon_order <https://www.gbif.org/species/7225535> ;
+    ns1:NCBITaxon_phylum <https://www.gbif.org/species/7707728> ;
+    ns1:NCBITaxon_species <https://www.gbif.org/species/3042845> ;
+    skos:related "Hydroxcinamic acids" .
+
+<https://www.gbif.org/species/3042850> a <http://schema.org/Taxon> ;
+    ns2:hasCanicalName "Brassica oleracea gongylodes" ;
+    ns2:hasRank "VARIETY" ;
+    ns2:hasScientificName "Brassica oleracea var. gongylodes L." ;
+    ns1:NCBITaxon_class <https://www.gbif.org/species/220> ;
+    ns1:NCBITaxon_family <https://www.gbif.org/species/3112> ;
+    ns1:NCBITaxon_genus <https://www.gbif.org/species/3042506> ;
+    ns1:NCBITaxon_kingdom <https://www.gbif.org/species/6> ;
+    ns1:NCBITaxon_order <https://www.gbif.org/species/7225535> ;
+    ns1:NCBITaxon_phylum <https://www.gbif.org/species/7707728> ;
+    ns1:NCBITaxon_species <https://www.gbif.org/species/3042845> ;
+    skos:related "Flavonoids" .
+
+<https://www.gbif.org/species/4272771> a <http://schema.org/Taxon> ;
+    ns2:hasCanicalName "Brassica juncea japonica" ;
+    ns2:hasRank "VARIETY" ;
+    ns2:hasScientificName "Brassica juncea var. japonica (Thunb.) L.H.Bailey" ;
+    ns1:NCBITaxon_class <https://www.gbif.org/species/220> ;
+    ns1:NCBITaxon_family <https://www.gbif.org/species/3112> ;
+    ns1:NCBITaxon_genus <https://www.gbif.org/species/3042506> ;
+    ns1:NCBITaxon_kingdom <https://www.gbif.org/species/6> ;
+    ns1:NCBITaxon_order <https://www.gbif.org/species/7225535> ;
+    ns1:NCBITaxon_phylum <https://www.gbif.org/species/7707728> ;
+    ns1:NCBITaxon_species <https://www.gbif.org/species/3042751> ;
+    skos:related "Hydroxcinamic acids" .
+
+<https://www.gbif.org/species/6393123> a <http://schema.org/Taxon> ;
+    ns2:hasCanicalName "Brassica rapa nipposinica" ;
+    ns2:hasRank "VARIETY" ;
+    ns2:hasScientificName "Brassica rapa var. nipposinica (L.H.Bailey) Kitam., 1985" ;
+    ns1:NCBITaxon_class <https://www.gbif.org/species/220> ;
+    ns1:NCBITaxon_family <https://www.gbif.org/species/3112> ;
+    ns1:NCBITaxon_genus <https://www.gbif.org/species/3042506> ;
+    ns1:NCBITaxon_kingdom <https://www.gbif.org/species/6> ;
+    ns1:NCBITaxon_order <https://www.gbif.org/species/7225535> ;
+    ns1:NCBITaxon_phylum <https://www.gbif.org/species/7707728> ;
+    ns1:NCBITaxon_species <https://www.gbif.org/species/7903057> ;
+    skos:related "Hydroxcinamic acids" .
+
+<https://www.gbif.org/species/3042658> a <http://schema.org/Taxon> ;
+    rdfs:label "Brassica nigra" ;
+    ns2:hasCanicalName "Brassica nigra" ;
+    ns2:hasRank "SPECIES" ;
+    ns2:hasScientificName "Brassica nigra (L.) W.D.J.Koch" ;
+    ns1:NCBITaxon_class <https://www.gbif.org/species/220> ;
+    ns1:NCBITaxon_family <https://www.gbif.org/species/3112> ;
+    ns1:NCBITaxon_genus <https://www.gbif.org/species/3042506> ;
+    ns1:NCBITaxon_kingdom <https://www.gbif.org/species/6> ;
+    ns1:NCBITaxon_order <https://www.gbif.org/species/7225535> ;
+    ns1:NCBITaxon_phylum <https://www.gbif.org/species/7707728> ;
+    ns1:NCBITaxon_species <https://www.gbif.org/species/3042658> ;
+    skos:related "",
+        "Anthocyanidins",
+        "Anthocyanins",
+        "Flavonol glycosides",
+        "Hydroxybenzoic acid derivatives",
+        "Hydroxycinnamic acid derivatives" .
+
+<https://www.gbif.org/species/3042751> a <http://schema.org/Taxon> ;
+    rdfs:label "Brassica juncea" ;
+    ns2:hasCanicalName "Brassica juncea" ;
+    ns2:hasRank "SPECIES" ;
+    ns2:hasScientificName "Brassica juncea (L.) Czern." ;
+    ns1:NCBITaxon_class <https://www.gbif.org/species/220> ;
+    ns1:NCBITaxon_family <https://www.gbif.org/species/3112> ;
+    ns1:NCBITaxon_genus <https://www.gbif.org/species/3042506> ;
+    ns1:NCBITaxon_kingdom <https://www.gbif.org/species/6> ;
+    ns1:NCBITaxon_order <https://www.gbif.org/species/7225535> ;
+    ns1:NCBITaxon_phylum <https://www.gbif.org/species/7707728> ;
+    ns1:NCBITaxon_species <https://www.gbif.org/species/3042751> ;
+    skos:related "Anthocyanins",
+        "Flavonoids",
+        "Hydroxcinamic acids" .
+
+<https://www.gbif.org/species/7903057> a <http://schema.org/Taxon> ;
+    rdfs:label "Brassica rapa" ;
+    ns2:hasCanicalName "Brassica rapa" ;
+    ns2:hasRank "SPECIES" ;
+    ns2:hasScientificName "Brassica rapa L." ;
+    ns1:NCBITaxon_class <https://www.gbif.org/species/220> ;
+    ns1:NCBITaxon_family <https://www.gbif.org/species/3112> ;
+    ns1:NCBITaxon_genus <https://www.gbif.org/species/3042506> ;
+    ns1:NCBITaxon_kingdom <https://www.gbif.org/species/6> ;
+    ns1:NCBITaxon_order <https://www.gbif.org/species/7225535> ;
+    ns1:NCBITaxon_phylum <https://www.gbif.org/species/7707728> ;
+    ns1:NCBITaxon_species <https://www.gbif.org/species/7903057> ;
+    skos:related "Anthocyanins",
+        "Flavonol glycosides",
+        "Hydroxycinnamic acid derivatives" .
+
+<https://www.gbif.org/species/3042845> a <http://schema.org/Taxon> ;
+    rdfs:label "Brassica oleracea" ;
+    ns2:hasCanicalName "Brassica oleracea" ;
+    ns2:hasRank "SPECIES" ;
+    ns2:hasScientificName "Brassica oleracea L." ;
+    ns1:NCBITaxon_class <https://www.gbif.org/species/220> ;
+    ns1:NCBITaxon_family <https://www.gbif.org/species/3112> ;
+    ns1:NCBITaxon_genus <https://www.gbif.org/species/3042506> ;
+    ns1:NCBITaxon_kingdom <https://www.gbif.org/species/6> ;
+    ns1:NCBITaxon_order <https://www.gbif.org/species/7225535> ;
+    ns1:NCBITaxon_phylum <https://www.gbif.org/species/7707728> ;
+    ns1:NCBITaxon_species <https://www.gbif.org/species/3042845> ;
+    skos:related "Anthocyanins",
+        "Flavonol glycosides",
+        "Hydroxycinnamic acid derivatives" .
+
+<https://www.gbif.org/species/220> rdfs:label "Magnoliopsida" .
+
+<https://www.gbif.org/species/3042506> rdfs:label "Brassica" .
+
+<https://www.gbif.org/species/3112> rdfs:label "Brassicaceae" .
+
+<https://www.gbif.org/species/6> rdfs:label "Plantae" .
+
+<https://www.gbif.org/species/7225535> rdfs:label "Brassicales" .
+
+<https://www.gbif.org/species/7707728> rdfs:label "Tracheophyta" .
+
