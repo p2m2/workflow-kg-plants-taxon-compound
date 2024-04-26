@@ -2,8 +2,11 @@ import os
 import sys
 import configparser
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_dir = os.path.dirname(script_dir)
 
-ontology_mapping_config_file = 'ontology_mapping.ini'
+ontology_mapping_config_file = '../config/ontology_mapping.ini'
+absolute_path = os.path.join(project_dir, ontology_mapping_config_file)
 
 def assertIsNotNone(dict,value,errorMessage):
     if value not in dict :
@@ -13,10 +16,10 @@ def assertIsNotNone(dict,value,errorMessage):
 def init_ontology_mapping():
     config = configparser.ConfigParser()
 
-    if os.path.exists(ontology_mapping_config_file):
-        config.read(ontology_mapping_config_file)
+    if os.path.exists(absolute_path):
+        config.read(absolute_path)
     else:
-        sys.stderr.write(f"Error: {ontology_mapping_config_file} file is missing.")
+        sys.stderr.write(f"Error: {absolute_path} file is missing.")
         sys.exit(1)
     
     if 'Class' not in config:

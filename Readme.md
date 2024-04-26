@@ -29,13 +29,13 @@ python src/api_doi.py --list_doi_file data/list_doi_example.txt --output test.js
 ssh $USER@genossh
 srun --gpus 1 -p gpu --pty bash
 . /local/env/envpython-3.9.5.sh
-virtualenv ~/env-idiap
-source ~/env-idiap/bin/activate
+virtualenv ~/env-idiap ## only the first time !!
+source ~/env-idiap/bin/activate 
 export PATH=/home/genouest/inra_umr1349/$USER/.local/bin:$PATH
 ```
 
 ```bash
-python workflow_idap.py --dump igepp.json
+python src/workflow_idap.py --dump igepp.json
 ```
 
 ### References
@@ -49,5 +49,5 @@ python workflow_idap.py --dump igepp.json
 
 ```bash
 pip install pygbif rdflib
-python build_rdf_graph.py --dump_doi test.json --dump_taxon_compound test_asso_taxon_metabolite_idiap.json
+python src/build_rdf_graph.py --dump_doi test.json --dump_taxon_compound test_taxon_metabolite_associations_idiap.json
 ```
