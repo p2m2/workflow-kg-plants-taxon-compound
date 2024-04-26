@@ -2,6 +2,8 @@
 
 This workflow involves a chain of processes to construct a knowledge graph from a list of scientific article DOIs. It aims to establish connections between scientific articles contained in PubMed and pairs of taxa/metabolites through the "produces" relationship. This work is based on the repository [Relation Extraction in underexplored biomedical domains: A diversity-optimised sampling and synthetic data generation approach](https://github.com/idiap/abroad-re).
 
+[![RDF Model](img/model_kg_plant_taxon_compound.png)](https://www.tldraw.com/v/IXSiv3uYFx3t3X2U6On8C?v=0,0,1920,921&p=page)
+
 
 
 ## 1 - a) Building the article base from a list of DOIs
