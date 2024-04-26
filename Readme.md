@@ -4,24 +4,30 @@ This workflow involves a chain of processes to construct a knowledge graph from 
 
 [![RDF Model](img/model_kg_plant_taxon_compound.png)](https://www.tldraw.com/v/IXSiv3uYFx3t3X2U6On8C?v=0,0,1920,921&p=page)
 
+## 1 - Building DOI list file
 
+- Search in PubMed for articles related to a taxon of the Brassicaceae family and glucosinolate compounds.
 
-## 1 - a) Building the article base from a list of DOIs
+```bash
+curl -s 'https://pubmed.ncbi.nlm.nih.gov/?term=brassica+glucosinolate&format=pubmed&size=200' | grep "\[doi\]" | cut -d" " -f3 > data/brassicale_glucosinolate.txt
+```
+
+## 2 - a) Building the article base from a list of DOIs
 
 ```
 python src/api_doi.py --list_doi "10.1021/jf401802n,10.1021/jf405538d" --output test.json
 ```
-## 1 - b) Building the article base from a list of DOIs in a file
+## 2 - b) Building the article base from a list of DOIs in a file
 
 ```
 python src/api_doi.py --list_doi_file data/list_doi_example.txt --output test.json
 ```
 
-## 1 - c) Building tha article base from pdf article
+## 2 - c) Building tha article base from pdf article
 
 *TODO*
 
-## 2 - IDIAP Workflow to generate Taxon / Metabolite "produces" associations
+## 3 - IDIAP Workflow to generate Taxon / Metabolite "produces" associations
 
 - Working with a GPU environment
 
@@ -45,7 +51,7 @@ python src/workflow_idap.py --dump igepp.json
 - [Relation Extraction in underexplored biomedical domains: A diversity-optimised sampling and synthetic data generation approach](https://github.com/idiap/abroad-re)
 - [colab](https://colab.research.google.com/github/idiap/abroad-re/blob/main/notebooks/inference.ipynb#scrollTo=6yPr04vYVoVE)
 
-## 3 - Build RDF Graph
+## 4 - Build RDF Graph
 
 ```bash
 pip install pygbif rdflib

@@ -41,14 +41,15 @@ def get_title_abstract_text(doi_database, list_doi_pmid):
         list_articles[pmid] = {'doi' : doi}
         if response.status_code == 200:
             data = response.json()
-            documents = data[0]['documents'] #
-            for pardoc in documents:
-                for passage in pardoc['passages']:
-                    if ('infons' in passage and 'section_type' in passage['infons'] and
-                        passage['infons']['section_type'] in [ 'TITLE','ABSTRACT','INTRO','RESULTS']):
-                        key = passage['infons']['section_type'].lower()
-                        list_articles[pmid].setdefault(key,"")
-                        list_articles[pmid][key] += passage['text']
+            if len(data)>0 and 'documents' in data[0]:
+                documents = data[0]['documents'] #
+                for pardoc in documents:
+                    for passage in pardoc['passages']:
+                        if ('infons' in passage and 'section_type' in passage['infons'] and
+                            passage['infons']['section_type'] in [ 'TITLE','ABSTRACT','INTRO','RESULTS']):
+                            key = passage['infons']['section_type'].lower()
+                            list_articles[pmid].setdefault(key,"")
+                            list_articles[pmid][key] += passage['text']
                         
         else:
             print("Error querying PubMed Central.")
