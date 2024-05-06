@@ -57,3 +57,7 @@ python src/workflow_idap.py --dump igepp.json
 pip install pygbif rdflib
 python src/build_rdf_graph.py --dump_doi test.json --dump_taxon_compound test_taxon_metabolite_associations_idiap.json
 ```
+
+## Note about relation to build/infere
+
+[gist](https://gist.github.com/ofilangi/b28b3da329f688fe32082e6418da79a0)
